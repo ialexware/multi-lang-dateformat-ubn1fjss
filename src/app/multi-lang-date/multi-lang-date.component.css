@@ -1,0 +1,12 @@
+.form-layout {
+  margin: 2em;
+}
+
+.language-icon{
+  transform: scale(2);
+  margin: 1em;
+}
+
+footer, a {
+  color: lightgrey
+}

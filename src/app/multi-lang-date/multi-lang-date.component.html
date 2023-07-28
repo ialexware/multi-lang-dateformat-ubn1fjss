@@ -1,0 +1,34 @@
+<div fxFlex fxLayout="column" class="form-layout" fxLayoutGap="2em">
+  <mat-radio-group fxFlex="50px" fxLayout="row" fxLayoutGap="1em">
+    <mat-radio-button *ngFor="let language of languageList" [value]="language" (click)="useLanguage(language)" [checked]="language === 'en'" >
+      <mat-icon class="language-icon" svgIcon="{{language}}"></mat-icon>
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field fxFlex="100" fxLayout="row">
+    <input matInput [formControl]="dateControl" [matDatepicker]="picker" placeholder="{{'datePlaceholder' | translate}}">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div fxFlex="150px" >
+    <h3>{{'dateLabel' | translate}}</h3>
+    <p>{{selectedDate}}</p>
+    <p>{{selectedDate | date: 'shortDate': '' : translate.currentLang}} (with DatePipe)</p>
+  </div>
+<pre>
+  {{ dateControl.errors | json }}
+</pre>
+<pre>
+  {{ dateControl.value | json }}
+</pre>
+<pre>
+  {{ dateControl.valid | json }}
+</pre>
+
+<button class="btn btn-secondary">
+  Secondary button
+</button>
+
+  <footer>
+    <small>Icons made by fdff <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></small>
+  </footer>
+</div>
