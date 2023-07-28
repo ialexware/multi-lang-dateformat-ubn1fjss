@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatIconRegistry} from '@angular/material';
+// import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -8,16 +8,16 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class AppComponent  {
 
-constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
-    this.setFlagIcons();
-  }
+// constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+//     this.setFlagIcons();
+//   }
 
-  private setFlagIcons() {
-    const listOfIcons: string[] = ['en', 'de', 'fr', 'es'];
-    listOfIcons.forEach(icon => {
-      this.matIconRegistry.addSvgIcon
-      (icon, this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/' + icon + '.svg')
-      );
-    });
-  }
+  // private setFlagIcons() {
+  //   const listOfIcons: string[] = ['en', 'de', 'fr', 'es'];
+  //   listOfIcons.forEach(icon => {
+  //     this.matIconRegistry.addSvgIcon
+  //     (icon, this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/' + icon + '.svg')
+  //     );
+  //   });
+  // }
 }
