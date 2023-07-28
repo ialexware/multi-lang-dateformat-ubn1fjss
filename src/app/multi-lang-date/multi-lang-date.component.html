@@ -1,14 +1,41 @@
 <div fxFlex fxLayout="column" class="form-layout" fxLayoutGap="2em">
+
   <mat-radio-group fxFlex="50px" fxLayout="row" fxLayoutGap="1em">
     <mat-radio-button *ngFor="let language of languageList" [value]="language" (click)="useLanguage(language)" [checked]="language === 'en'" >
       <mat-icon class="language-icon" svgIcon="{{language}}"></mat-icon>
     </mat-radio-button>
   </mat-radio-group>
-  <mat-form-field fxFlex="100" fxLayout="row">
-    <input matInput [formControl]="dateControl" [matDatepicker]="picker" placeholder="{{'datePlaceholder' | translate}}">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+
+  <div  class="input-group">
+    <input
+      [formControl]="dateControl"
+      matInput
+      class="form-control"
+      name="controlDatepicker"
+      [matDatepicker]="picker"
+      [placeholder]="placeholder"
+      >
+      <!-- [id]="spDatepickerId"
+      [min]="minLocalDate"
+      [max]="maxLocalDate"
+      (click)="click()"
+      (dateChange)="spDateChange($event)"
+      (input)="spInput($event)" -->
+    <mat-datepicker
+      #picker
+      [dateClass]="spDateClass"
+      ></mat-datepicker>
+      <!-- [calendarHeaderComponent]="calendarHeaderComponent"
+        (opened)="picker.open()"
+      (monthSelected)="spMonthSelected($event)" -->
+
+  <span class="input-group-btn">
+    <button class="btn btn-secondary" type="button"
+      [disabled]="innerIsDisabled" (click)="picker.open()">
+      <i class="bi bi-calendar"></i>
+    </button>
+  </span>
+</div>
   <div fxFlex="150px" >
     <h3>{{'dateLabel' | translate}}</h3>
     <p>{{selectedDate}}</p>
@@ -23,6 +50,23 @@
 <pre>
   {{ dateControl.valid | json }}
 </pre>
+
+<div role="alert" *ngIf="dateControl.errors?.matDatepickerMin" aria-atomic="true" id="minErr">
+  <span tabindex="0" class="alert-danger reader-error error-outline date-alert m-t-sm">
+    {{ formatDate(this.minDate!) }}
+  </span>
+</div>
+<div role="alert" *ngIf="dateControl.errors?.matDatepickerMax" aria-atomic="true" id="maxErr">
+  <span tabindex="0" class="alert-danger reader-error error-outline date-alert m-t-sm">
+    {{ formatDate(this.maxDate!) }}
+  </span>
+</div>
+<div role="alert" *ngIf="dateControl.errors?.matDatepickerParse" aria-atomic="true" id="dateErr">
+  <span tabindex="0" class="alert-danger reader-error error-outline date-alert m-t-sm">
+    {{ placeholder }}
+  </span>
+</div>
+
 
 <button class="btn btn-secondary">
   Secondary button
